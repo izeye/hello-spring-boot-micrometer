@@ -21,6 +21,8 @@ dependencies {
 
 	implementation 'io.micrometer:micrometer-registry-elastic'
 
+	implementation 'org.eclipse.jetty:jetty-client'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
