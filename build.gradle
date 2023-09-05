@@ -24,3 +24,7 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+wrapper {
+	gradleVersion = '8.3'
+}
