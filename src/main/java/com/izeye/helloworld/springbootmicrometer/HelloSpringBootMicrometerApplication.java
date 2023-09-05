@@ -3,6 +3,11 @@ package com.izeye.helloworld.springbootmicrometer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Main class.
+ *
+ * @author Johnny Lim
+ */
 @SpringBootApplication
 public class HelloSpringBootMicrometerApplication {
 
