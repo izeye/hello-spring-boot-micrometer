@@ -25,11 +25,13 @@ class TestControllerTests {
     @Test
     void restTemplate() {
         this.client.get().uri("/test/rest-template-with-uri").exchange().expectStatus().isOk();
+        this.client.get().uri("/test/rest-template-with-url").exchange().expectStatus().isOk();
+        this.client.get().uri("/test/rest-template-with-url-template").exchange().expectStatus().isOk();
 
         long count = this.meterRegistry.get("http.client.requests").tag("uri", "/headers")
                 .timer()
                 .count();
-        assertThat(count).isOne();
+        assertThat(count).isEqualTo(3);
     }
 
 }

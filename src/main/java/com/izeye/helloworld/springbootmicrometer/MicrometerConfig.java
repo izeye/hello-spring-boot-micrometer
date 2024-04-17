@@ -28,9 +28,8 @@ public class MicrometerConfig {
 
         @Override
         public Iterable<Tag> getTags(String urlTemplate, HttpRequest request, ClientHttpResponse response) {
-            Tag uriTag = (StringUtils.hasText(urlTemplate) ? RestTemplateExchangeTags.uri(urlTemplate)
-                    : Tag.of("uri", removeQueryPart(RestTemplateExchangeTags.uri(request).getValue())));
-            return Arrays.asList(RestTemplateExchangeTags.method(request), uriTag,
+            String url = StringUtils.hasText(urlTemplate) ? urlTemplate : RestTemplateExchangeTags.uri(request).getValue();
+            return Arrays.asList(RestTemplateExchangeTags.method(request), RestTemplateExchangeTags.uri(removeQueryPart(url)),
                     RestTemplateExchangeTags.status(response), RestTemplateExchangeTags.clientName(request),
                     RestTemplateExchangeTags.outcome(response));
         }
