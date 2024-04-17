@@ -24,7 +24,7 @@ class TestControllerTests {
 
     @Test
     void restTemplate() {
-        this.client.get().uri("/test/rest-template").exchange().expectStatus().isOk();
+        this.client.get().uri("/test/rest-template-with-uri").exchange().expectStatus().isOk();
 
         long count = this.meterRegistry.get("http.client.requests").tag("uri", "/headers")
                 .timer()

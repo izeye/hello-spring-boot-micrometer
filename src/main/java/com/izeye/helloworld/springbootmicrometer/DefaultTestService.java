@@ -24,7 +24,7 @@ public class DefaultTestService implements TestService {
 
 
     @Override
-    public Map<String, Object> testRestTemplate() {
+    public Map<String, Object> testRestTemplateWithUri() {
         URI uri = UriComponentsBuilder.fromHttpUrl("https://httpbin.org/headers")
                 .queryParam("a", "test")
                 .queryParam("b", "테스트")
@@ -32,6 +32,16 @@ public class DefaultTestService implements TestService {
                 .encode()
                 .toUri();
         return this.restTemplate.getForObject(uri, Map.class);
+    }
+
+    @Override
+    public Map<String, Object> testRestTemplateWithUrlTemplate() {
+        return this.restTemplate.getForObject("https://httpbin.org/headers?a={a}", Map.class, "test");
+    }
+
+    @Override
+    public Map<String, Object> testRestTemplateWithUrl() {
+        return this.restTemplate.getForObject("https://httpbin.org/headers?a=test", Map.class);
     }
 
 }

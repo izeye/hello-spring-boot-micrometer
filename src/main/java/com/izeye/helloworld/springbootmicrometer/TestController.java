@@ -21,9 +21,19 @@ public class TestController {
         this.service = service;
     }
 
-    @GetMapping(path = "rest-template")
-    public Map<String, Object> testRestTemplate() {
-        return this.service.testRestTemplate();
+    @GetMapping(path = "rest-template-with-uri")
+    public Map<String, Object> testRestTemplateWithUri() {
+        return this.service.testRestTemplateWithUri();
+    }
+
+    @GetMapping(path = "rest-template-with-url-template")
+    public Map<String, Object> testRestTemplateWithUrlTemplate() {
+        return this.service.testRestTemplateWithUrlTemplate();
+    }
+
+    @GetMapping(path = "rest-template-with-url")
+    public Map<String, Object> testRestTemplateWithUrl() {
+        return this.service.testRestTemplateWithUrl();
     }
 
 }

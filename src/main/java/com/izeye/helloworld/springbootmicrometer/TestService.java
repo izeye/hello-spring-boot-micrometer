@@ -9,6 +9,10 @@ import java.util.Map;
  */
 public interface TestService {
 
-    Map<String, Object> testRestTemplate();
+    Map<String, Object> testRestTemplateWithUri();
+
+    Map<String, Object> testRestTemplateWithUrlTemplate();
+
+    Map<String, Object> testRestTemplateWithUrl();
 
 }
