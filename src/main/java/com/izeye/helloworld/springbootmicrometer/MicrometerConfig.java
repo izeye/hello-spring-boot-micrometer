@@ -1,15 +1,11 @@
 package com.izeye.helloworld.springbootmicrometer;
 
-import io.micrometer.core.instrument.Tag;
-import org.springframework.boot.actuate.metrics.web.client.RestTemplateExchangeTags;
-import org.springframework.boot.actuate.metrics.web.client.RestTemplateExchangeTagsProvider;
+import io.micrometer.common.KeyValue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpRequest;
-import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.util.StringUtils;
-
-import java.util.Arrays;
+import org.springframework.http.client.observation.ClientHttpObservationDocumentation;
+import org.springframework.http.client.observation.ClientRequestObservationContext;
+import org.springframework.http.client.observation.DefaultClientRequestObservationConvention;
 
 /**
  * {@link Configuration} for Micrometer.
@@ -20,18 +16,16 @@ import java.util.Arrays;
 public class MicrometerConfig {
 
     @Bean
-    public CustomRestTemplateExchangeTagsProvider restTemplateExchangeTagsProvider() {
-        return new CustomRestTemplateExchangeTagsProvider();
+    public CustomClientRequestObservationConvention clientRequestObservationConvention() {
+        return new CustomClientRequestObservationConvention();
     }
 
-    static class CustomRestTemplateExchangeTagsProvider implements RestTemplateExchangeTagsProvider {
+    static class CustomClientRequestObservationConvention extends DefaultClientRequestObservationConvention {
 
         @Override
-        public Iterable<Tag> getTags(String urlTemplate, HttpRequest request, ClientHttpResponse response) {
-            String url = StringUtils.hasText(urlTemplate) ? urlTemplate : RestTemplateExchangeTags.uri(request).getValue();
-            return Arrays.asList(RestTemplateExchangeTags.method(request), RestTemplateExchangeTags.uri(removeQueryPart(url)),
-                    RestTemplateExchangeTags.status(response), RestTemplateExchangeTags.clientName(request),
-                    RestTemplateExchangeTags.outcome(response));
+        protected KeyValue uri(ClientRequestObservationContext context) {
+            String uri = removeQueryPart(context.getCarrier().getURI().getPath());
+            return KeyValue.of(ClientHttpObservationDocumentation.LowCardinalityKeyNames.URI, uri);
         }
 
         private String removeQueryPart(String uri) {
