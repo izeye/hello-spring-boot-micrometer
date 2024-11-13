@@ -32,5 +32,5 @@ tasks.named('test') {
 }
 
 wrapper {
-	gradleVersion = '8.8'
+	gradleVersion = '8.11'
 }
