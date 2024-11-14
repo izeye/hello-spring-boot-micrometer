@@ -2,7 +2,7 @@ package com.izeye.helloworld.springbootmicrometer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.actuate.metrics.AutoConfigureMetrics;
+import org.springframework.boot.test.autoconfigure.actuate.observability.AutoConfigureObservability;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
@@ -12,7 +12,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
  * @author Johnny Lim
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMetrics
+@AutoConfigureObservability
 class SpringBootActuatorTests {
 
     @Autowired
