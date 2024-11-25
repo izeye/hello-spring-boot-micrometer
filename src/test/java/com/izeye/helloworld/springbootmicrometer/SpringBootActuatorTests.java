@@ -11,7 +11,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
  *
  * @author Johnny Lim
  */
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "spring.cache.type=simple")
 @AutoConfigureMetrics
 class SpringBootActuatorTests {
 
