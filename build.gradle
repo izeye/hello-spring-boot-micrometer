@@ -23,6 +23,8 @@ dependencies {
 
 	implementation 'io.micrometer:micrometer-registry-statsd'
 
+	implementation 'com.datadoghq:java-dogstatsd-client:4.4.3'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	testImplementation 'org.awaitility:awaitility'
